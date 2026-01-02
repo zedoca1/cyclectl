@@ -12,9 +12,10 @@ interface MonthColumnProps {
   tasks: Task[];
   onEditTask: (task: Task) => void;
   onViewDetails: (task: Task) => void;
+  onToggleComplete: (task: Task) => void; // New Prop
 }
 
-export function MonthColumn({ month, tasks, onEditTask, onViewDetails }: MonthColumnProps) {
+export function MonthColumn({ month, tasks, onEditTask, onViewDetails, onToggleComplete }: MonthColumnProps) {
   const { setNodeRef, isOver } = useDroppable({
     id: month,
   });
@@ -65,7 +66,7 @@ export function MonthColumn({ month, tasks, onEditTask, onViewDetails }: MonthCo
           strategy={verticalListSortingStrategy}
         >
           {tasks.map((task) => (
-            <TaskCard key={task._id} task={task} onEdit={onEditTask} onViewDetails={onViewDetails} />
+            <TaskCard key={task._id} task={task} onEdit={onEditTask} onViewDetails={onViewDetails} onToggleComplete={onToggleComplete} />
           ))}
         </SortableContext>
 

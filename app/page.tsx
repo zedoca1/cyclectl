@@ -207,6 +207,12 @@ export default function Dashboard() {
     }
   };
 
+  const handleToggleComplete = async (task: Task) => { // New function
+    const newStatus = task.status === 'completed' ? 'pending' : 'completed';
+    const updatedTask = { ...task, status: newStatus };
+    await handleUpdateTask(updatedTask);
+  };
+
   const handleDragStart = (event: DragStartEvent) => {
     const task = tasks.find(t => t._id === event.active.id);
     setActiveTask(task || null);
@@ -368,6 +374,7 @@ export default function Dashboard() {
                     tasks={tasksByMonth[month]}
                     onEditTask={handleEditTask}
                     onViewDetails={handleViewTask}
+                    onToggleComplete={handleToggleComplete} // New Prop
                   />
                 ))}
               </div>
@@ -381,7 +388,7 @@ export default function Dashboard() {
         <DragOverlay>
           {activeTask && (
             <div className="opacity-80">
-              <TaskCard task={activeTask} onEdit={() => {}} onViewDetails={() => {}} />
+              <TaskCard task={activeTask} onEdit={() => {}} onViewDetails={() => {}} onToggleComplete={() => {}} /> // New Prop
             </div>
           )}
         </DragOverlay>
