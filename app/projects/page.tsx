@@ -6,22 +6,39 @@ import { motion } from 'framer-motion';
 import { Rocket, Plus, Folder } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { useSession, signOut } from 'next-auth/react'; // Added useSession and signOut
 
 export default function ProjectsPage() {
   const router = useRouter();
+  const { data: session, status } = useSession(); // Get session status
   const [projects, setProjects] = useState<string[]>([]);
   const [newProjectName, setNewProjectName] = useState('');
   const [loading, setLoading] = useState(true);
 
+  // Redirect unauthenticated users to home page
   useEffect(() => {
-    fetchProjects();
-  }, []);
+    if (status === 'unauthenticated') {
+      router.replace('/');
+    }
+  }, [status, router]);
+
+  useEffect(() => {
+    if (status === 'authenticated') { // Only fetch if authenticated
+      fetchProjects();
+    }
+  }, [status]); // Dependency on status
 
   const fetchProjects = async () => {
     try {
       const response = await fetch('/api/projects');
       const data = await response.json();
-      setProjects(data);
+      console.log('Fetched projects data:', data); // Debugging log
+      if (Array.isArray(data)) {
+        setProjects(data);
+      } else {
+        console.error('Fetched data is not an array:', data);
+        setProjects([]); // Set to empty array to avoid crash
+      }
     } catch (error) {
       console.error('Failed to fetch projects:', error);
     } finally {
@@ -36,7 +53,7 @@ export default function ProjectsPage() {
     }
   };
 
-  if (loading) {
+  if (loading || status === 'loading') { // Add status loading check
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
         <div className="flex flex-col items-center gap-4">
@@ -52,19 +69,28 @@ export default function ProjectsPage() {
     );
   }
 
+  // If not authenticated and not loading, it means status is 'unauthenticated'
+  // The useEffect above will handle the redirect, so this part should not be reached for unauthenticated users.
+  if (status === 'unauthenticated') {
+    return null; // Or a simple message, as redirect is handled by useEffect
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white">
       <div className="container mx-auto px-6 py-12">
-        <div className="flex items-center gap-4 mb-12">
-          <Rocket className="w-10 h-10 text-cyan-400" />
-          <div>
-            <h1 className="text-4xl font-bold font-mono text-cyan-400 tracking-wider">
-              CYCLECTL
-            </h1>
-            <p className="text-lg font-mono text-cyan-500/60">
-              Select a project or create a new one to begin.
-            </p>
+        <div className="flex items-center justify-between mb-12"> {/* Added justify-between */}
+          <div className="flex items-center gap-4">
+            <Rocket className="w-10 h-10 text-cyan-400" />
+            <div>
+              <h1 className="text-4xl font-bold font-mono text-cyan-400 tracking-wider">
+                CYCLECTL
+              </h1>
+              <p className="text-lg font-mono text-cyan-500/60">
+                Select a project or create a new one to begin.
+              </p>
+            </div>
           </div>
+          <Button onClick={() => signOut({ callbackUrl: '/' })}>Sign out</Button> {/* Sign out button */}
         </div>
 
         <div className="mb-12">

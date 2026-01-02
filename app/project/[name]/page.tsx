@@ -324,7 +324,7 @@ export default function ProjectDashboard() {
                         </AlertDialogFooter>
                       </AlertDialogContent>
                     </AlertDialog>
-                    <Button onClick={() => signOut()}>Sign out</Button>
+                    <Button onClick={() => signOut({ callbackUrl: '/' })}>Sign out</Button>
                   </div>
                 </div>
               </div>
