@@ -59,16 +59,16 @@ CYCLECTL is a powerful web application designed to help teams manage their long-
     NEXTAUTH_URL=http://localhost:3000
     NEXTAUTH_SECRET=a_secure_random_string_for_session_encryption
 
-    # OAuth Providers (Optional, uncomment and fill if needed)
-    # GITHUB_ID=your_github_oauth_app_id
-    # GITHUB_SECRET=your_github_oauth_app_secret
-    # GOOGLE_CLIENT_ID=your_google_oauth_client_id
-    # GOOGLE_CLIENT_SECRET=your_google_oauth_client_secret
-    # EMAIL_SERVER_USER=your_email_user
-    # EMAIL_SERVER_PASSWORD=your_email_password
-    # EMAIL_SERVER_HOST=your_email_host
-    # EMAIL_SERVER_PORT=your_email_port
-    # EMAIL_FROM=your_email_from
+    # OAuth Providers
+    GITHUB_ID=your_github_oauth_app_id
+    GITHUB_SECRET=your_github_oauth_app_secret
+    GOOGLE_CLIENT_ID=your_google_oauth_client_id
+    GOOGLE_CLIENT_SECRET=your_google_oauth_client_secret
+    EMAIL_SERVER_USER=your_email_user
+    EMAIL_SERVER_PASSWORD=your_email_password
+    EMAIL_SERVER_HOST=your_email_host
+    EMAIL_SERVER_PORT=your_email_port
+    EMAIL_FROM=your_email_from
     ```
 
 4.  **Run the development server:**
@@ -100,10 +100,6 @@ After signing in, you'll see a list of your projects. You can create a new proje
 -   **Import JSON:** Click "Load JSON" in the header to import tasks in bulk from a JSON file.
 -   **Export JSON:** Click "Export JSON" to download all tasks for the current project as a JSON file.
 -   **Clear Board:** Click the "Clear Board" button (trash icon) to delete all tasks in the current project.
-
-## License
-
-This project is licensed under the GNU General Public License (GPL).
 
 ### 💀 M3K Signing Off
 
