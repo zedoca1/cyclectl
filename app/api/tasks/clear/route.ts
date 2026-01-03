@@ -12,7 +12,16 @@ export async function DELETE(request: NextRequest) {
   try {
     const { db } = await connectToDatabase();
 
-    const { deletedCount } = await db.collection('tasks').deleteMany({ userId: session.user.id });
+    const { projectName } = await request.json();
+
+    if (!projectName) {
+      return NextResponse.json({ error: 'Project name is required' }, { status: 400 });
+    }
+
+    const { deletedCount } = await db.collection('tasks').deleteMany({ 
+      userId: session.user.id,
+      project: projectName 
+    });
 
     return NextResponse.json({ message: `Deleted ${deletedCount} tasks for user ${session.user.id}` });
   } catch (error: any) {

@@ -196,6 +196,10 @@ export default function ProjectDashboard() {
     try {
       const response = await fetch('/api/tasks/clear', {
         method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ projectName }),
       });
 
       if (!response.ok) throw new Error('Failed to clear board');

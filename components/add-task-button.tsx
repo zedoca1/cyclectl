@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, X, Rocket } from 'lucide-react';
 import { Task } from '@/lib/database.types';
@@ -27,21 +27,42 @@ export function AddTaskButton({ onAdd }: AddTaskButtonProps) {
   const [formData, setFormData] = useState({
     task_title: '',
     task_description: '',
-    start: '',
-    end: '',
+    startDay: 1 as number | string,
+    endDay: 1 as number | string,
     month: 'January',
     year: new Date().getFullYear(),
     status: 'pending' as Task['status'],
   });
 
+  useEffect(() => {
+    const monthIndex = MONTHS.indexOf(formData.month);
+    const daysInMonth = new Date(formData.year, monthIndex + 1, 0).getDate();
+    if (Number(formData.startDay) > daysInMonth) {
+      setFormData(prev => ({ ...prev, startDay: daysInMonth }));
+    }
+    if (Number(formData.endDay) > daysInMonth) {
+      setFormData(prev => ({ ...prev, endDay: daysInMonth }));
+    }
+  }, [formData.month, formData.year]);
+
+  useEffect(() => {
+    if (formData.startDay !== '' && formData.endDay !== '' && Number(formData.endDay) < Number(formData.startDay)) {
+      setFormData(prev => ({ ...prev, endDay: formData.startDay }));
+    }
+  }, [formData.startDay, formData.endDay]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onAdd(formData);
+    const monthIndex = MONTHS.indexOf(formData.month);
+    const start = `${formData.year}-${String(monthIndex + 1).padStart(2, '0')}-${String(formData.startDay).padStart(2, '0')}`;
+    const end = `${formData.year}-${String(monthIndex + 1).padStart(2, '0')}-${String(formData.endDay).padStart(2, '0')}`;
+
+    onAdd({ ...formData, start, end, startDay: Number(formData.startDay), endDay: Number(formData.endDay) });
     setFormData({
       task_title: '',
       task_description: '',
-      start: '',
-      end: '',
+      startDay: 1,
+      endDay: 1,
       month: 'January',
       year: new Date().getFullYear(),
       status: 'pending' as Task['status'],
@@ -122,27 +143,31 @@ export function AddTaskButton({ onAdd }: AddTaskButtonProps) {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-mono text-cyan-400 mb-2">
-                      Start Date
+                      Start Day
                     </label>
                     <input
-                      type="date"
-                      value={formData.start}
-                      onChange={(e) => setFormData({ ...formData, start: e.target.value })}
+                      type="number"
+                      value={formData.startDay}
+                      onChange={(e) => setFormData({ ...formData, startDay: e.target.value })}
                       className="w-full px-4 py-2 rounded-lg bg-black/50 border border-cyan-500/30 text-white font-mono text-sm focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all"
                       required
+                      min="1"
+                      max={new Date(formData.year, MONTHS.indexOf(formData.month) + 1, 0).getDate()}
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-mono text-cyan-400 mb-2">
-                      End Date
+                      End Day
                     </label>
                     <input
-                      type="date"
-                      value={formData.end}
-                      onChange={(e) => setFormData({ ...formData, end: e.target.value })}
+                      type="number"
+                      value={formData.endDay}
+                      onChange={(e) => setFormData({ ...formData, endDay: e.target.value })}
                       className="w-full px-4 py-2 rounded-lg bg-black/50 border border-cyan-500/30 text-white font-mono text-sm focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all"
                       required
+                      min="1"
+                      max={new Date(formData.year, MONTHS.indexOf(formData.month) + 1, 0).getDate()}
                     />
                   </div>
                 </div>

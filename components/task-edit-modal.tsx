@@ -5,6 +5,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Save } from 'lucide-react';
 import { Task } from '@/lib/database.types';
 
+const MONTHS = [
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December'
+];
+
 interface TaskEditModalProps {
   task: Task | null;
   isOpen: boolean;
@@ -14,17 +19,49 @@ interface TaskEditModalProps {
 
 export function TaskEditModal({ task, isOpen, onClose, onSave }: TaskEditModalProps) {
   const [formData, setFormData] = useState<Partial<Task>>({});
+  const [startDay, setStartDay] = useState<number | string>(1);
+  const [endDay, setEndDay] = useState<number | string>(1);
 
   useEffect(() => {
     if (task) {
       setFormData(task);
+      if (task.start) {
+        setStartDay(new Date(task.start).getUTCDate());
+      }
+      if (task.end) {
+        setEndDay(new Date(task.end).getUTCDate());
+      }
     }
   }, [task]);
 
+  useEffect(() => {
+    if (formData.month && formData.year) {
+      const monthIndex = MONTHS.indexOf(formData.month);
+      const daysInMonth = new Date(formData.year, monthIndex + 1, 0).getDate();
+      if (Number(startDay) > daysInMonth) {
+        setStartDay(daysInMonth);
+      }
+      if (Number(endDay) > daysInMonth) {
+        setEndDay(daysInMonth);
+      }
+    }
+  }, [formData.month, formData.year, startDay, endDay]);
+
+  useEffect(() => {
+    if (startDay !== '' && endDay !== '' && Number(endDay) < Number(startDay)) {
+      setEndDay(startDay);
+    }
+  }, [startDay, endDay]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (formData._id) { // Updated from formData.id
-      onSave(formData as Task);
+    if (formData._id) {
+      const monthIndex = MONTHS.indexOf(formData.month!);
+      const year = formData.year || new Date().getFullYear();
+      const start = `${year}-${String(monthIndex + 1).padStart(2, '0')}-${String(startDay).padStart(2, '0')}`;
+      const end = `${year}-${String(monthIndex + 1).padStart(2, '0')}-${String(endDay).padStart(2, '0')}`;
+      const updatedTask = { ...formData, start, end } as Task;
+      onSave(updatedTask);
     }
   };
 
@@ -85,30 +122,48 @@ export function TaskEditModal({ task, isOpen, onClose, onSave }: TaskEditModalPr
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-3 gap-4">
                 <div>
                   <label className="block text-sm font-mono text-cyan-400 mb-2">
-                    Start Date
+                    Month
+                  </label>
+                  <select
+                    value={formData.month}
+                    onChange={(e) => setFormData({ ...formData, month: e.target.value })}
+                    className="w-full px-4 py-2 rounded-lg bg-black/50 border border-cyan-500/30 text-white font-mono text-sm focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all"
+                  >
+                    {MONTHS.map(month => (
+                      <option key={month} value={month}>{month}</option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-mono text-cyan-400 mb-2">
+                    Start Day
                   </label>
                   <input
-                    type="date"
-                    value={formData.start || ''}
-                    onChange={(e) => setFormData({ ...formData, start: e.target.value })}
+                    type="number"
+                    value={startDay}
+                    onChange={(e) => setStartDay(e.target.value)}
                     className="w-full px-4 py-2 rounded-lg bg-black/50 border border-cyan-500/30 text-white font-mono text-sm focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all"
                     required
+                    min="1"
+                    max={formData.month && formData.year ? new Date(formData.year, MONTHS.indexOf(formData.month) + 1, 0).getDate() : 31}
                   />
                 </div>
 
                 <div>
                   <label className="block text-sm font-mono text-cyan-400 mb-2">
-                    End Date
+                    End Day
                   </label>
                   <input
-                    type="date"
-                    value={formData.end || ''}
-                    onChange={(e) => setFormData({ ...formData, end: e.target.value })}
+                    type="number"
+                    value={endDay}
+                    onChange={(e) => setEndDay(e.target.value)}
                     className="w-full px-4 py-2 rounded-lg bg-black/50 border border-cyan-500/30 text-white font-mono text-sm focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all"
                     required
+                    min="1"
+                    max={formData.month && formData.year ? new Date(formData.year, MONTHS.indexOf(formData.month) + 1, 0).getDate() : 31}
                   />
                 </div>
               </div>

@@ -10,21 +10,30 @@ import { Portal } from "./Portal";
 
 const EXAMPLE_JSON = `[
   {
-    "task_title": "Design the new landing page",
-    "task_description": "Create wireframes, mockups, and prototypes for the new landing page.",
-    "start": "2026-01-10",
-    "end": "2026-01-20",
+    "task_title": "Finalize Q1 Report",
+    "task_description": "Compile all departmental data, create visualizations, and write the executive summary for the quarterly report.",
+    "start": 25,
+    "end": 31,
     "status": "in_progress",
-    "month": "January",
+    "month": "March",
     "year": 2026
   },
   {
-    "task_title": "Develop the new API",
-    "task_description": "Implement the backend API endpoints for user authentication and task management.",
-    "start": "2026-01-15",
-    "end": "2026-02-10",
+    "task_title": "Plan Team Offsite",
+    "task_description": "Organize logistics for the upcoming team offsite, including venue, catering, and activities.",
+    "start": 5,
+    "end": 10,
     "status": "pending",
-    "month": "January",
+    "month": "April",
+    "year": 2026
+  },
+  {
+    "task_title": "User Authentication Flow",
+    "task_description": "Develop and test the complete user sign-up, sign-in, and password reset functionality.",
+    "start": 1,
+    "end": 28,
+    "status": "completed",
+    "month": "February",
     "year": 2026
   }
 ]`;
