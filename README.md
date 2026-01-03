@@ -4,7 +4,7 @@
 
 A dark, cyber-studio command center for managing long-term production roadmaps, now powered by Next.js, NextAuth.js, and MongoDB.
 
-**Live Demo:** [cyclectl.them3chanik.com](https://cyclectl.them3chanik.com)
+**Live Website:** [cyclectl.them3chanik.com](https://cyclectl.them3chanik.com)
 
 ## Overview
 
